@@ -17,7 +17,9 @@ final class MoneyBundle extends Bundle
     {
         /** @var string $currency */
         $currency = $this->container?->getParameter('garak.money.currency');
-        Type::addType('money', MoneyType::class);
+        if (!Type::hasType('money')) {
+            Type::addType('money', MoneyType::class);
+        }
         /** @var MoneyType $moneyType */
         $moneyType = Type::getType('money');
         $moneyType->setCurrency($currency);
