@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="vendor/autoload.php" colors="true">
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="vendor/autoload.php" colors="true" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.3/phpunit.xsd">
     <testsuites>
         <testsuite name="garak/money-bundle test suite">
             <directory suffix="Test.php">tests</directory>
         </testsuite>
     </testsuites>
-    <filter>
-        <whitelist>
+    <source>
+        <include>
             <directory>src</directory>
-        </whitelist>
-    </filter>
-    <extensions>
-        <extension class="Garak\Money\Tests\BypassFinalHook"/>
-    </extensions>
+        </include>
+    </source>
 </phpunit>

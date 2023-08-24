@@ -4,3 +4,8 @@ parameters:
 			message: "#^Call to an undefined method Symfony\\\\Component\\\\Config\\\\Definition\\\\Builder\\\\NodeDefinition\\:\\:children\\(\\)\\.$#"
 			count: 1
 			path: src/DependencyInjection/Configuration.php
+
+		-
+			message: "#^Parameter \\#1 \\$code of class Money\\\\Currency constructor expects non\\-empty\\-string, string given\\.$#"
+			count: 1
+			path: src/DoctrineType/MoneyType.php

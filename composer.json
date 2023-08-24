@@ -20,7 +20,6 @@
         "twig/twig": "^3.4"
     },
     "require-dev": {
-        "dg/bypass-finals": "^1.4",
         "friendsofphp/php-cs-fixer": "^3.23",
         "phpunit/phpunit": "^10.3"
     },

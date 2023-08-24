@@ -78,7 +78,3 @@ money:
     decimal: "."    # default ","
     thousands: ","  # default "."
 ```
-
-## TODO
-
-* write tests
