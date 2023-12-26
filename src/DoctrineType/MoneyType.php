@@ -57,9 +57,6 @@ final class MoneyType extends IntegerType
         throw ConversionException::conversionFailed($value, self::NAME);
     }
 
-    /**
-     * @codeCoverageIgnore
-     */
     public function getName(): string
     {
         return self::NAME;

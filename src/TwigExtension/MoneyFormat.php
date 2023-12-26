@@ -15,9 +15,6 @@ final class MoneyFormat extends AbstractExtension
     ) {
     }
 
-    /**
-     * @codeCoverageIgnore
-     */
     public function getFilters(): array
     {
         return [new TwigFilter('money', [$this, 'format'])];

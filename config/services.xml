@@ -10,5 +10,8 @@
             <argument>%garak.money.thousands%</argument>
             <tag name="twig.extension"/>
         </service>
+        <service id="Garak\Money\FormTypeExtension\MoneyTypeExtension" public="false">
+            <tag name="form.type_extension" extended_type="Symfony\Component\Form\Extension\Core\Type\MoneyType"/>
+        </service>
     </services>
 </container>

@@ -24,7 +24,7 @@ final class MoneyTypeTest extends TestCase
 
     public function testConvertToInvalidPhpValue(): void
     {
-        self::expectException(ConversionException::class);
+        $this->expectException(ConversionException::class);
         $platform = $this->createMock(AbstractPlatform::class);
         $type = new MoneyType();
         $type->convertToPHPValue('invalid', $platform);
@@ -49,7 +49,7 @@ final class MoneyTypeTest extends TestCase
 
     public function testConvertToInvalidDatabaseValue(): void
     {
-        self::expectException(ConversionException::class);
+        $this->expectException(ConversionException::class);
         $platform = $this->createMock(AbstractPlatform::class);
         $type = new MoneyType();
         $type->convertToDatabaseValue('invalid', $platform);

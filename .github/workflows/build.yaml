@@ -36,9 +36,12 @@ jobs:
                     - description: 'Symfony 5.4'
                       php: '8.1'
                       symfony: 5.4.*
-                    - description: 'Symfony 6.3'
+                    - description: 'Symfony 6.4'
                       php: '8.2'
-                      symfony: 6.3.*
+                      symfony: 6.4.*
+                    - description: 'Symfony 7.0'
+                      php: '8.3'
+                      symfony: 7.0.*
         name: PHP ${{ matrix.php }} tests (${{ matrix.description }})
         steps:
             - name: Checkout
@@ -56,5 +59,13 @@ jobs:
                   sed -ri 's/"symfony\/(.+)": "(.+)"/"symfony\/\1": "'${{ matrix.symfony }}'"/' composer.json;
               if: matrix.symfony
             - run: composer update --no-interaction --no-progress --ansi ${{ matrix.composer_option }}
-            - run: vendor/bin/phpunit
-
+            - run: vendor/bin/phpunit --coverage-clover=clover.xml
+            - name: Code Climate Test Reporter
+              uses: aktions/codeclimate-test-reporter@v1
+              if: ${{ matrix.php == '8.2' }}
+              with:
+                  codeclimate-test-reporter-id: ${{ secrets.CC_TEST_REPORTER_ID }}
+                  command: after-build --coverage-input-type clover
+            - uses: codecov/codecov-action@v1
+              with:
+                  files: ./clover.xml

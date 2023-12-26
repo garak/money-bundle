@@ -1,6 +1,12 @@
 # Money bundle
 
-The purpose of this bundle is very simple: using moneyphp/money library with a single currency.
+[![Total Downloads](https://poser.pugx.org/garak/money-bundle/downloads.png)](https://packagist.org/packages/garak/money-bundle)
+[![Build](https://github.com/garak/money-bundle/actions/workflows/build.yaml/badge.svg)](https://github.com/garak/money-bundle/actions/workflows/build.yaml)
+[![Maintainability](https://api.codeclimate.com/v1/badges/1cb65549a1492cb0abcc/maintainability)](https://codeclimate.com/github/garak/money-bundle/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/1cb65549a1492cb0abcc/test_coverage)](https://codeclimate.com/github/garak/money-bundle/test_coverage)
+
+
+The purpose of this bundle is very simple: using the `moneyphp/money` library with a single currency.
 
 The typical use is when you need to map an amount of money to a database field.
 You could embed the Money object in your entity, but this is not perfectly working, because Doctrine
@@ -55,6 +61,15 @@ class Foo
     </entity>
 </doctrine-mapping>
 ```
+
+## Form type extension
+
+This bundle configures a form type extension for the Symfony MoneyType, which does two things:
+
+* set the default option of `divisor` to `100` (which should be the value to use with most currencties)
+* cast the submitted value to integer, which is the format expected by `moneyphp/money`
+
+You don't need to do anything to use this extension, which is automatically applied.
 
 ## Twig extension
 
