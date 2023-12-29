@@ -18,20 +18,23 @@ final class MoneyFormatTest extends TestCase
     }
 
     #[DataProvider('moneyProvider')]
-    public function testGetFormat(string $currency, Money $input, string $output): void
+    public function testGetFormat(string $currency, Money $input, string $output, bool $after = false): void
     {
-        $ext = new MoneyFormat($currency, ',', '.');
+        $ext = new MoneyFormat($currency, ',', '.', $after);
         self::assertEquals($output, $ext->format($input));
     }
 
     /**
-     * @return array<string, array<int, string|Money>>
+     * @return array<string, array<int, string|Money|bool>>
      */
     public static function moneyProvider(): array
     {
         return [
             'EUR' => ['EUR', Money::EUR(1000_55), '€1.000,55'],
             'USD' => ['USD', Money::EUR(1000_55), '$1.000,55'],
+            'negative' => ['EUR', Money::EUR(-1000), '-€10,00'],
+            'symbol after' => ['EUR', Money::EUR(1000), '10,00€', true],
+            'negative and symbol after' => ['EUR', Money::EUR(-1000), '-10,00€', true],
         ];
     }
 }
