@@ -10,7 +10,7 @@ jobs:
         name: PHPStan
         steps:
             - name: Checkout
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
             - name: PHPStan
               uses: docker://oskarstark/phpstan-ga
               env:
@@ -22,7 +22,7 @@ jobs:
         name: PHP-CS-Fixer
         steps:
             - name: Checkout
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
             - name: Fix CS
               uses: docker://oskarstark/php-cs-fixer-ga
     tests:
@@ -45,10 +45,10 @@ jobs:
         name: PHP ${{ matrix.php }} tests (${{ matrix.description }})
         steps:
             - name: Checkout
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
             - name: Cache
-              uses: actions/cache@v3
-              with: 
+              uses: actions/cache@v4
+              with:
                   path: ~/.composer/cache/files
                   key: ${{ matrix.php }}-${{ matrix.symfony }}-${{ matrix.composer_option }} 
             - name: Setup PHP
@@ -62,7 +62,7 @@ jobs:
             - run: vendor/bin/phpunit --coverage-clover=clover.xml
             - name: Code Climate Test Reporter
               uses: aktions/codeclimate-test-reporter@v1
-              if: ${{ matrix.php == '8.2' }}
+              if: ${{ matrix.php == '8.3' }}
               with:
                   codeclimate-test-reporter-id: ${{ secrets.CC_TEST_REPORTER_ID }}
                   command: after-build --coverage-input-type clover
