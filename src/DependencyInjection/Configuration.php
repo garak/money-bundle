@@ -17,6 +17,7 @@ final class Configuration implements ConfigurationInterface
               ->scalarNode('currency')->defaultValue('EUR')->end()
               ?->scalarNode('decimal')->defaultValue(',')->end()
               ?->scalarNode('thousands')->defaultValue('.')->end()
+              ?->booleanNode('after')->defaultValue(false)->end()
             ?->end()
         ;
 

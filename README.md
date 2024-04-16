@@ -85,11 +85,12 @@ Example:
 ## Customizations
 
 You can use a currency different from EUR.
-Also, you can customize the separators used by the Twig extension:
+Also, you can customize the separators used by the Twig extension, and have the symbol after the amount:
 
 ```yaml
 money:
     currency: CHF   # default "EUR"
     decimal: "."    # default ","
     thousands: ","  # default "."
+    after: true     # default false
 ```
