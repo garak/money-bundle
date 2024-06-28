@@ -4,15 +4,12 @@ namespace Garak\Money\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 final class MoneyExtension extends Extension
 {
-    /**
-     * @param array<string, mixed> $configs
-     */
     public function load(array $configs, ContainerBuilder $container): void
     {
         $processor = new Processor();
