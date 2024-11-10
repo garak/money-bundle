@@ -6,7 +6,7 @@ on:
 
 jobs:
     phpstan:
-        runs-on: ubuntu-22.04
+        runs-on: ubuntu-24.04
         name: PHPStan
         steps:
             - name: Checkout
@@ -18,7 +18,7 @@ jobs:
               with:
                   args: analyse
     cs-fixer:
-        runs-on: ubuntu-22.04
+        runs-on: ubuntu-24.04
         name: PHP-CS-Fixer
         steps:
             - name: Checkout
@@ -26,7 +26,7 @@ jobs:
             - name: Fix CS
               uses: docker://oskarstark/php-cs-fixer-ga
     tests:
-        runs-on: ubuntu-22.04
+        runs-on: ubuntu-24.04
         strategy:
             matrix:
                 include:
@@ -42,6 +42,9 @@ jobs:
                     - description: 'Symfony 7.1'
                       php: '8.3'
                       symfony: 7.1.*
+                    - description: 'Symfony 7.2'
+                      php: '8.4'
+                      symfony: 7.2.*@dev
         name: PHP ${{ matrix.php }} tests (${{ matrix.description }})
         steps:
             - name: Checkout
@@ -55,9 +58,15 @@ jobs:
               uses: shivammathur/setup-php@v2
               with:
                   php-version: ${{ matrix.php }}
-            - run: |
-                  sed -ri 's/"symfony\/(.+)": "(.+)"/"symfony\/\1": "'${{ matrix.symfony }}'"/' composer.json;
+            - name: Require specific Symfony version
               if: matrix.symfony
+              run: |
+                  sed -ri 's/"symfony\/(.+)": "(.+)"/"symfony\/\1": "'${{ matrix.symfony }}'"/' composer.json;
+            - name: Use possible dev deps
+              if: contains(matrix.symfony, '@dev')
+              run: |
+                  composer config minimum-stability dev 
+                  composer config prefer-stable true
             - run: composer update --no-interaction --no-progress --ansi ${{ matrix.composer_option }}
             - run: vendor/bin/phpunit --coverage-clover=clover.xml
             - name: Code Climate Test Reporter
