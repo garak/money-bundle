@@ -21,7 +21,7 @@ final class MoneyFormat extends AbstractExtension
         return [new TwigFilter('money', [$this, 'format'])];
     }
 
-    public function format(Money $money, string $decimal = null, string $thousands = null, bool $after = null): string
+    public function format(Money $money, ?string $decimal = null, ?string $thousands = null, ?bool $after = null): string
     {
         $symbol = $this->getSymbol();
         $decimal ??= $this->decimal;
