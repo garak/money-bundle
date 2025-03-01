@@ -6,7 +6,7 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/1cb65549a1492cb0abcc/test_coverage)](https://codeclimate.com/github/garak/money-bundle/test_coverage)
 
 
-The purpose of this bundle is very simple: using the `moneyphp/money` library with a single currency.
+The purpose of this bundle is straightforward: using the `moneyphp/money` library with a single currency.
 
 The typical use is when you need to map an amount of money to a database field.
 You could embed the Money object in your entity, but this is not perfectly working, because Doctrine
@@ -16,7 +16,7 @@ Moreover, you probably want to use a single currency in your project, so you don
 a useless column for the currency itself.
 
 With this bundle, you can just use "money" as type. It's up to you to choose if your property is
-nullable or not (as for any other Doctrine mapping, the default option is being not nullable).
+nullable or not (as for any other Doctrine mapping, the default option is not nullable).
 You're done: your property will be mapped to a Money EUR object (see below for customizations).
 
 ## Installation
@@ -66,8 +66,8 @@ class Foo
 
 This bundle configures a form type extension for the Symfony MoneyType, which does two things:
 
-* set the default option of `divisor` to `100` (which should be the value to use with most currencties)
-* cast the submitted value to integer, which is the format expected by `moneyphp/money`
+* set the default option of `divisor` to `100` (which should be the value to use with most currencies)
+* cast the submitted value to an integer, which is the format expected by `moneyphp/money`
 
 You don't need to do anything to use this extension, which is automatically applied.
 
@@ -85,7 +85,8 @@ Example:
 ## Customizations
 
 You can use a currency different from EUR.
-Also, you can customize the separators used by the Twig extension, and have the symbol after the amount:
+Also, you can customize the separators used by the Twig extension, and have the symbol after the amount
+(with a space, if you want):
 
 ```yaml
 money:
@@ -93,4 +94,5 @@ money:
     decimal: "."    # default ","
     thousands: ","  # default "."
     after: true     # default false
+    space: true     # default false
 ```
