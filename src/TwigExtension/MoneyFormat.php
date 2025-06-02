@@ -13,6 +13,7 @@ final class MoneyFormat extends AbstractExtension
         private readonly string $decimal,
         private readonly string $thousands,
         private readonly bool $after = false,
+        private readonly bool $space = false,
     ) {
     }
 
@@ -21,14 +22,15 @@ final class MoneyFormat extends AbstractExtension
         return [new TwigFilter('money', [$this, 'format'])];
     }
 
-    public function format(Money $money, ?string $decimal = null, ?string $thousands = null, ?bool $after = null): string
+    public function format(Money $money, ?string $decimal = null, ?string $thousands = null, ?bool $after = null, ?bool $space = null): string
     {
         $symbol = $this->getSymbol();
         $decimal ??= $this->decimal;
         $thousands ??= $this->thousands;
         $after ??= $this->after;
+        $space ??= $this->space;
         if ($after) {
-            return \number_format((int) $money->getAmount() / 100, 2, $decimal, $thousands).$symbol;
+            return \number_format((int) $money->getAmount() / 100, 2, $decimal, $thousands).($space ? ' ' : '').$symbol;
         }
         if ($money->isNegative()) {
             $symbol = '-'.$symbol;
@@ -37,7 +39,7 @@ final class MoneyFormat extends AbstractExtension
             $amount = (int) $money->getAmount();
         }
 
-        return $symbol.\number_format($amount / 100, 2, $decimal, $thousands);
+        return $symbol.($space ? ' ' : '').\number_format($amount / 100, 2, $decimal, $thousands);
     }
 
     private function getSymbol(): string

@@ -18,6 +18,7 @@ final class Configuration implements ConfigurationInterface
               ?->scalarNode('decimal')->defaultValue(',')->end()
               ?->scalarNode('thousands')->defaultValue('.')->end()
               ?->booleanNode('after')->defaultValue(false)->end()
+              ?->booleanNode('space')->defaultValue(false)->end()
             ?->end()
         ;
 
