@@ -3,6 +3,7 @@
 namespace Garak\Money\Tests\DoctrineType;
 
 use Garak\Money\TwigExtension\MoneyFormat;
+use Garak\Money\TwigExtension\MoneyFormatRuntime;
 use Money\Money;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
@@ -12,20 +13,20 @@ final class MoneyFormatTest extends TestCase
 {
     public function testGetFilters(): void
     {
-        $ext = new MoneyFormat('EUR', '', '');
-        self::assertCount(1, $ext->getFilters());
+        $ext = new MoneyFormat();
+        self::assertCount(2, $ext->getFilters());
         self::assertInstanceOf(TwigFilter::class, $ext->getFilters()[0]);
     }
 
     #[DataProvider('moneyProvider')]
-    public function testGetFormat(string $currency, Money $input, string $output, bool $after = false, bool $space = false): void
+    public function testGetFormat(string $currency, ?Money $input, ?string $output, bool $after = false, bool $space = false): void
     {
-        $ext = new MoneyFormat($currency, ',', '.', $after, $space);
-        self::assertEquals($output, $ext->format($input));
+        $ext = new MoneyFormatRuntime($currency, ',', '.', $after, $space);
+        self::assertEquals($output, $ext->formatNullable($input));
     }
 
     /**
-     * @return array<string, array<int, string|Money|bool>>
+     * @return array<string, array<int, string|Money|bool|null>>
      */
     public static function moneyProvider(): array
     {
@@ -36,6 +37,7 @@ final class MoneyFormatTest extends TestCase
             'symbol after' => ['EUR', Money::EUR(1000), '10,00€', true],
             'symbol after + space' => ['EUR', Money::EUR(1000), '10,00 €', true, true],
             'negative and symbol after' => ['EUR', Money::EUR(-1000), '-10,00€', true],
+            'null' => ['EUR', null, null],
         ];
     }
 }

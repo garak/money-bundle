@@ -40,7 +40,7 @@ final class MoneyType extends Type
 
             return new Money($value, $currency);
         } catch (\InvalidArgumentException $exception) {
-            $msg = sprintf('Could not convert database value "%s" to Doctrine Type money', $value);
+            $msg = \sprintf('Could not convert database value "%s" to Doctrine Type money', $value);
             throw new ConversionException($msg, previous: $exception);
         }
     }
@@ -58,7 +58,7 @@ final class MoneyType extends Type
             return (int) $value->getAmount();
         }
 
-        $msg = sprintf('Could not convert money value value "%s" to database value', $value);
+        $msg = \sprintf('Could not convert money value value "%s" to database value', $value);
         throw new ConversionException($msg);
     }
 

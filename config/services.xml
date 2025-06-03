@@ -5,11 +5,14 @@
 >
     <services>
         <service id="Garak\Money\TwigExtension\MoneyFormat" public="false">
+            <tag name="twig.extension"/>
+        </service>
+        <service id="Garak\Money\TwigExtension\MoneyFormatRuntime" public="false">
             <argument>%garak.money.currency%</argument>
             <argument>%garak.money.decimal%</argument>
             <argument>%garak.money.thousands%</argument>
             <argument>%garak.money.after%</argument>
-            <tag name="twig.extension"/>
+            <tag name="twig.runtime"/>
         </service>
         <service id="Garak\Money\FormTypeExtension\MoneyTypeExtension" public="false">
             <tag name="form.type_extension" extended_type="Symfony\Component\Form\Extension\Core\Type\MoneyType"/>
