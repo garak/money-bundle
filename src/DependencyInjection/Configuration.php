@@ -19,6 +19,7 @@ final class Configuration implements ConfigurationInterface
               ?->scalarNode('thousands')->defaultValue('.')->end()
               ?->booleanNode('after')->defaultValue(false)->end()
               ?->booleanNode('space')->defaultValue(false)->end()
+              ?->booleanNode('money_transform')->defaultValue(false)->end()
             ?->end()
         ;
 
