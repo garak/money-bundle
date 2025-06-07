@@ -67,13 +67,15 @@ class Foo
 This bundle configures a form type extension for the Symfony MoneyType, which does two things:
 
 * set the default option of `divisor` to `100` (which should be the value to use with most currencies)
-* cast the submitted value to an integer, which is the format expected by `moneyphp/money`
+* cast the submitted value to an integer, which is the format expected by `moneyphp/money`.
+  The submitted value can be cast directly to a `Money` object, by configuring the bundle option
+  `money_transform` to true
 
 You don't need to do anything to use this extension, which is automatically applied.
 
 ## Twig extension
 
-This bundle exposes a Twig filter called "money". It's useful to format the value of your money property.
+This bundle exposes a Twig filter called `money`. It's useful to format the value of your money property.
 
 Example:
 
@@ -82,17 +84,28 @@ Example:
 {{ foo.payment|money }}
 ```
 
+If the value is nullable, you can use the `nullable_money` filter instead:
+
+```twig
+{# display "€50,99" for 5099 and nothing for null #}
+{{ foo.paymentOrNull|nullable_money }}
+```
+
 ## Customizations
 
 You can use a currency different from EUR.
 Also, you can customize the separators used by the Twig extension, and have the symbol after the amount
-(with a space, if you want):
+(with a space, if you want). Finally, you can enable the transformation of the submitted value to a `Money`
+object in the form type extension.
+
+Here's an example of a configuration file:
 
 ```yaml
 money:
-    currency: CHF   # default "EUR"
-    decimal: "."    # default ","
-    thousands: ","  # default "."
-    after: true     # default false
-    space: true     # default false
+    currency: CHF         # default "EUR"
+    decimal: "."          # default ","
+    thousands: ","        # default "."
+    after: true           # default false
+    space: true           # default false
+    money_transform: true # default false
 ```

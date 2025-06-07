@@ -10,8 +10,12 @@ use Money\Money;
 
 final class MoneyType extends Type
 {
+    /** @var non-empty-string $currency */
     private string $currency = 'EUR';
 
+    /**
+     * @param non-empty-string $currency
+     */
     public function setCurrency(string $currency): void
     {
         $this->currency = $currency;
