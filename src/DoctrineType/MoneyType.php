@@ -10,7 +10,7 @@ use Money\Money;
 
 final class MoneyType extends Type
 {
-    /** @var non-empty-string $currency */
+    /** @var non-empty-string */
     private string $currency = 'EUR';
 
     /**

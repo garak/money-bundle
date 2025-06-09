@@ -12,9 +12,12 @@
             <argument>%garak.money.decimal%</argument>
             <argument>%garak.money.thousands%</argument>
             <argument>%garak.money.after%</argument>
+            <argument>%garak.money.space%</argument>
             <tag name="twig.runtime"/>
         </service>
         <service id="Garak\Money\FormTypeExtension\MoneyTypeExtension" public="false">
+            <argument>%garak.money.money_transform%</argument>
+            <argument>%garak.money.currency%</argument>
             <tag name="form.type_extension" extended_type="Symfony\Component\Form\Extension\Core\Type\MoneyType"/>
         </service>
     </services>
