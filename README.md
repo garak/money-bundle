@@ -2,7 +2,7 @@
 
 [![Total Downloads](https://poser.pugx.org/garak/money-bundle/downloads.png)](https://packagist.org/packages/garak/money-bundle)
 [![Build](https://github.com/garak/money-bundle/actions/workflows/build.yaml/badge.svg)](https://github.com/garak/money-bundle/actions/workflows/build.yaml)
-[![Maintainability](https://api.codeclimate.com/v1/badges/1cb65549a1492cb0abcc/maintainability)](https://codeclimate.com/github/garak/money-bundle/maintainability)
+[![Maintainability](https://qlty.sh/gh/garak/projects/money/maintainability.svg)](https://qlty.sh/gh/garak/projects/money)
 [![Code Coverage](https://qlty.sh/gh/garak/projects/money/coverage.svg)](https://qlty.sh/gh/garak/projects/money)
 
 The purpose of this bundle is straightforward: using the `moneyphp/money` library with a single currency.
