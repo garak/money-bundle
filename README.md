@@ -3,8 +3,7 @@
 [![Total Downloads](https://poser.pugx.org/garak/money-bundle/downloads.png)](https://packagist.org/packages/garak/money-bundle)
 [![Build](https://github.com/garak/money-bundle/actions/workflows/build.yaml/badge.svg)](https://github.com/garak/money-bundle/actions/workflows/build.yaml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/1cb65549a1492cb0abcc/maintainability)](https://codeclimate.com/github/garak/money-bundle/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/1cb65549a1492cb0abcc/test_coverage)](https://codeclimate.com/github/garak/money-bundle/test_coverage)
-
+[![Code Coverage](https://qlty.sh/gh/garak/projects/money/coverage.svg)](https://qlty.sh/gh/garak/projects/money)
 
 The purpose of this bundle is straightforward: using the `moneyphp/money` library with a single currency.
 
@@ -47,7 +46,7 @@ class Foo
 ```
 
 ```xml
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <doctrine-mapping
     xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
