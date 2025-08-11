@@ -14,9 +14,9 @@ doesn't support nullable embeddable objects.
 Moreover, you probably want to use a single currency in your project, so you don't want to use
 a useless column for the currency itself.
 
-With this bundle, you can just use "money" as type. It's up to you to choose if your property is
+With this bundle, you can use "money" as a type. It's up to you to choose if your property is
 nullable or not (as for any other Doctrine mapping, the default option is not nullable).
-You're done: your property will be mapped to a Money EUR object (see below for customizations).
+You're done: your property will be mapped to a Money EUR object (see below for customisations).
 
 ## Installation
 
@@ -67,7 +67,7 @@ This bundle configures a form type extension for the Symfony MoneyType, which do
 
 * set the default option of `divisor` to `100` (which should be the value to use with most currencies)
 * cast the submitted value to an integer, which is the format expected by `moneyphp/money`.
-  The submitted value can be cast directly to a `Money` object, by configuring the bundle option
+  The submitted value can be cast directly to a `Money` object by configuring the bundle option
   `money_transform` to true
 
 You don't need to do anything to use this extension, which is automatically applied.
@@ -93,7 +93,7 @@ If the value is nullable, you can use the `nullable_money` filter instead:
 ## Customizations
 
 You can use a currency different from EUR.
-Also, you can customize the separators used by the Twig extension, and have the symbol after the amount
+Also, you can customise the separators used by the Twig extension, and have the symbol after the amount
 (with a space, if you want). Finally, you can enable the transformation of the submitted value to a `Money`
 object in the form type extension.
 
@@ -101,10 +101,10 @@ Here's an example of a configuration file:
 
 ```yaml
 money:
-    currency: CHF         # default "EUR"
-    decimal: "."          # default ","
-    thousands: ","        # default "."
-    after: true           # default false
-    space: true           # default false
-    money_transform: true # default false
+  currency: CHF         # default "EUR"
+  decimal: "."          # default ","
+  thousands: ","        # default "."
+  after: true           # default false
+  space: true           # default false
+  money_transform: true # default false
 ```
