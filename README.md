@@ -90,7 +90,7 @@ If the value is nullable, you can use the `nullable_money` filter instead:
 {{ foo.paymentOrNull|nullable_money }}
 ```
 
-## Customizations
+## Customisations
 
 You can use a currency different from EUR.
 Also, you can customise the separators used by the Twig extension, and have the symbol after the amount

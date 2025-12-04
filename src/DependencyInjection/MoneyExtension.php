@@ -23,7 +23,7 @@ final class MoneyExtension extends Extension
         $container->setParameter('garak.money.space', $config['space']);
         $container->setParameter('garak.money.money_transform', $config['money_transform']);
 
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../../config'));
-        $loader->load('services.xml');
+        $loader = new Loader\PhpFileLoader($container, new FileLocator(__DIR__.'/../../config'));
+        $loader->load('services.php');
     }
 }

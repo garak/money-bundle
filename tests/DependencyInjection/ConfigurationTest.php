@@ -1,6 +1,6 @@
 <?php
 
-namespace Garak\Money\Tests\DoctrineType;
+namespace Garak\Money\Tests\DependencyInjection;
 
 use Garak\Money\DependencyInjection\Configuration;
 use PHPUnit\Framework\TestCase;
