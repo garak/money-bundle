@@ -1,6 +1,6 @@
 <?php
 
-namespace Garak\Money\Tests\DoctrineType;
+namespace Garak\Money\Tests\TwigExtension;
 
 use Garak\Money\TwigExtension\MoneyFormat;
 use Garak\Money\TwigExtension\MoneyFormatRuntime;
