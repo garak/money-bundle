@@ -36,7 +36,8 @@ jobs:
                 include:
                     - description: 'Lowest'
                       php: '8.1'
-                      composer_option: '--prefer-lowest'
+                      symfony: 6.4.*
+                      dependencies: lowest
                     - description: 'Symfony 6.4'
                       php: '8.3'
                       symfony: 6.4.*
@@ -49,28 +50,23 @@ jobs:
         name: PHP ${{ matrix.php }} tests (${{ matrix.description }})
         steps:
             - name: Checkout
-              uses: actions/checkout@v4
-            - name: Cache
-              uses: actions/cache@v4
-              with:
-                  path: ~/.composer/cache/files
-                  key: ${{ matrix.php }}-${{ matrix.symfony }}-${{ matrix.composer_option }} 
+              uses: actions/checkout@v6
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
               with:
                   php-version: ${{ matrix.php }}
-            - name: Require specific Symfony version
-              if: matrix.symfony
-              run: |
-                  sed -ri 's/"symfony\/(.+)": "(.+)"/"symfony\/\1": "'${{ matrix.symfony }}'"/' composer.json;
-            - name: Use possible dev deps
-              if: contains(matrix.symfony, '@dev')
-              run: |
-                  composer config minimum-stability dev
-                  composer config prefer-stable true
-            - run: composer update --no-interaction --no-progress --ansi ${{ matrix.composer_option }}
-            - run: vendor/bin/phpunit --colors=always --coverage-clover coverage.xml
-            - name: Test & publish code coverage
+                  tools: flex
+              env:
+                  COMPOSER_ALLOW_PLUGINS: symfony/flex
+            - name: Install dependencies
+              uses: ramsey/composer-install@v3
+              with:
+                  dependency-versions: ${{ matrix.dependencies }}
+              env:
+                  SYMFONY_REQUIRE: ${{ matrix.symfony }}
+            - name: Test
+              run: vendor/bin/phpunit --coverage-clover coverage.xml
+            - name: Publish code coverage
               if: ${{ matrix.php == '8.4' }}
               uses: qltysh/qlty-action/coverage@v1
               with:
