@@ -65,14 +65,4 @@ final class MoneyType extends Type
         $msg = \sprintf('Could not convert money value value "%s" to database value', $value);
         throw new ConversionException($msg);
     }
-
-    public function getName(): string
-    {
-        return 'money';
-    }
-
-    public function requiresSQLCommentHint(AbstractPlatform $platform): bool
-    {
-        return true;
-    }
 }

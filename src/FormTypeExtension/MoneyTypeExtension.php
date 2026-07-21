@@ -16,8 +16,8 @@ final class MoneyTypeExtension extends AbstractTypeExtension
      * @param non-empty-string $currency
      */
     public function __construct(
-        private bool $transformToMoney = false,
-        private string $currency = 'EUR',
+        private readonly bool $transformToMoney = false,
+        private readonly string $currency = 'EUR',
     ) {
     }
 
