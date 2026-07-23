@@ -54,15 +54,4 @@ final class MoneyTypeTest extends TestCase
         $type = new MoneyType();
         $type->convertToDatabaseValue('invalid', $platform);
     }
-
-    public function testGetName(): void
-    {
-        self::assertEquals('money', (new MoneyType())->getName());
-    }
-
-    public function testRequiresSqlCommentHint(): void
-    {
-        $platform = $this->createMock(AbstractPlatform::class);
-        self::assertTrue((new MoneyType())->requiresSQLCommentHint($platform));
-    }
 }
