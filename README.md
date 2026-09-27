@@ -94,7 +94,7 @@ If the value is nullable, you can use the `nullable_money` filter instead:
 
 You can use a currency different from EUR.
 Also, you can customise the separators used by the Twig extension, and have the symbol after the amount
-(with a space, if you want). Finally, you can enable the transformation of the submitted value to a `Money`
+(with a space, if you want: a non-breaking one, so the symbol never wraps apart from the amount). Finally, you can enable the transformation of the submitted value to a `Money`
 object in the form type extension.
 
 Here's an example of a configuration file:

@@ -7,6 +7,9 @@ use Twig\Extension\RuntimeExtensionInterface;
 
 final class MoneyFormatRuntime implements RuntimeExtensionInterface
 {
+    // non-breaking: the symbol never wraps apart from the amount
+    private const string SPACE = "\u{a0}";
+
     public function __construct(
         private readonly string $currency,
         private readonly string $decimal,
@@ -29,7 +32,7 @@ final class MoneyFormatRuntime implements RuntimeExtensionInterface
         $after ??= $this->after;
         $space ??= $this->space;
         if ($after) {
-            return \number_format((int) $money->getAmount() / 100, 2, $decimal, $thousands).($space ? ' ' : '').$symbol;
+            return \number_format((int) $money->getAmount() / 100, 2, $decimal, $thousands).($space ? self::SPACE : '').$symbol;
         }
         if ($money->isNegative()) {
             $symbol = '-'.$symbol;
@@ -38,7 +41,7 @@ final class MoneyFormatRuntime implements RuntimeExtensionInterface
             $amount = (int) $money->getAmount();
         }
 
-        return $symbol.($space ? ' ' : '').\number_format($amount / 100, 2, $decimal, $thousands);
+        return $symbol.($space ? self::SPACE : '').\number_format($amount / 100, 2, $decimal, $thousands);
     }
 
     private function getSymbol(): string
