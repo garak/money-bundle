@@ -35,7 +35,9 @@ final class MoneyFormatTest extends TestCase
             'USD' => ['USD', Money::EUR(1000_55), '$1.000,55'],
             'negative' => ['EUR', Money::EUR(-1000), '-€10,00'],
             'symbol after' => ['EUR', Money::EUR(1000), '10,00€', true],
-            'symbol after + space' => ['EUR', Money::EUR(1000), '10,00 €', true, true],
+            'symbol after + space' => ['EUR', Money::EUR(1000), "10,00\u{a0}€", true, true],
+            'symbol before + space' => ['EUR', Money::EUR(1000), "€\u{a0}10,00", false, true],
+            'negative, symbol before + space' => ['EUR', Money::EUR(-1000), "-€\u{a0}10,00", false, true],
             'negative and symbol after' => ['EUR', Money::EUR(-1000), '-10,00€', true],
             'null' => ['EUR', null, null],
         ];
